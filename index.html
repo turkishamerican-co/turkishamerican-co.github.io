@@ -2,104 +2,128 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Türkiye Karşıtı Yasa Tasarıları Hakkında</title>
+  <title>Örnek Mail Kutusu</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0; padding: 20px;
-      background-color: #f0f2f5;
+      padding: 30px;
+      background-color: #f2f2f2;
     }
-    header {
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .button-grid button {
+      padding: 10px 15px;
+      font-size: 16px;
       background-color: #007BFF;
       color: white;
-      padding: 20px;
-      text-align: center;
+      border: none;
       border-radius: 6px;
+      cursor: pointer;
     }
-    h1 { margin: 0; }
-    .info {
-      background: #fff;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    .button-grid button:hover {
+      background-color: #0056b3;
     }
     .mail-box {
-      background-color: #ffffff;
-      border-radius: 6px;
-      padding: 16px;
-      margin-bottom: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      display: none;
       position: relative;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
     .copy-btn {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      background-color: #28a745;
+      top: 20px;
+      right: 20px;
+      padding: 8px 14px;
+      background: #28a745;
       color: white;
       border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
     }
     .copy-btn:active {
-      background-color: #1e7e34;
+      background: #1e7e34;
     }
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
       margin-top: 0;
     }
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #666;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Türkiye'ye Karşı Hazırlanan Tasarılara Yanıt</h1>
-</header>
+<h1>Türkiye Hakkındaki Yasa Tasarılarına Yanıt İçin Mail Örnekleri</h1>
 
-<section class="info">
-  <p>
-    ABD Kongresi'nde bazı temsilciler tarafından sunulan yasa tasarıları, Türkiye hakkında yanıltıcı ve tek taraflı bilgiler içermektedir. Aşağıda, bu yasa tasarılarına karşı duruşunuzu demokratik yollarla ifade etmenize yardımcı olacak 20 farklı e-posta örneği bulunmaktadır. Her mesaj, ilgili temsilcilere saygılı ve etkili bir şekilde yazılmıştır.
-  </p>
-</section>
-
-<!-- Mail 1 -->
-<div class="mail-box">
-  <pre id="mail1">Sayın Temsilci,
-
-HR 594 yasa tasarısının, Türkiye’yi “din özgürlüğünü ihlal eden” ülkeler listesine dahil etmesi, Türkiye'nin mevcut anayasal ve toplumsal yapısıyla örtüşmemektedir.
-
-Bu konuda daha dengeli ve kapsamlı bilgi edinmeniz adına Türkiye'nin dini özgürlükler konusundaki uygulamalarına göz atmanızı ve bu yasa tasarısında Türkiye’nin adil değerlendirilmesini sağlamanızı rica ediyorum.
-
-Saygılarımla,
-[Adınız Soyadınız]
-[Yaşadığınız eyalet]</pre>
-  <button class="copy-btn" onclick="copyToClipboard('mail1')">Kopyala</button>
+<div class="button-grid">
+  <!-- 1-20 numaralı butonlar -->
+  <script>
+    for (let i = 1; i <= 20; i++) {
+      document.write(`<button onclick="showMail(${i})">${i}</button>`);
+    }
+  </script>
+  <!-- Rastgele Buton -->
+  <button onclick="showRandomMail()">🎲 Rastgele</button>
 </div>
 
-<!-- Diğer mail kutularını buraya çoğaltabilirsin: mail2, mail3, ..., mail20 -->
-
-<!-- Örn: -->
-<!-- <div class="mail-box"> ... </div> -->
-
-<footer>
-  Bu sayfa bilgilendirme amacıyla hazırlanmıştır. Demokrasiye katkı sağlayan her ses değerlidir.
-</footer>
+<!-- Mail gösterme kutusu -->
+<div id="mailBox" class="mail-box">
+  <pre id="mailContent"></pre>
+  <button class="copy-btn" onclick="copyMail()">Kopyala</button>
+</div>
 
 <script>
-  function copyToClipboard(id) {
-    const text = document.getElementById(id).innerText;
+  const mails = [
+    "Sayın Temsilci,\n\nHR 594 yasa tasarısının Türkiye’yi haksız şekilde hedef alması kabul edilemez...\nSaygılarımla,\n[Adınız]",
+    "Merhaba,\n\nTürkiye’deki dini özgürlük uygulamaları hakkında daha adil bir bakış açısı sunmak isterim...\nSaygılarımla,\n[Adınız]",
+    "Sayın Kongre Üyesi,\n\nBu yasa tasarısı, Türkiye’nin iç işlerine müdahale niteliğindedir ve yanlış bilgiler içermektedir...",
+    "Saygıdeğer Yetkili,\n\nAmerika ile Türkiye arasındaki stratejik ilişkileri göz önünde bulundurarak bu tasarının gözden geçirilmesini rica ederim...",
+    "Merhaba,\n\nBir Türk-Amerikalı olarak bu yasa tasarısının adil olmadığını düşünüyorum ve endişelerimi paylaşmak istiyorum...",
+    // Mail 6–20’yi seninle devam ettirebiliriz
+    "Örnek 6",
+    "Örnek 7",
+    "Örnek 8",
+    "Örnek 9",
+    "Örnek 10",
+    "Örnek 11",
+    "Örnek 12",
+    "Örnek 13",
+    "Örnek 14",
+    "Örnek 15",
+    "Örnek 16",
+    "Örnek 17",
+    "Örnek 18",
+    "Örnek 19",
+    "Örnek 20"
+  ];
+
+  function showMail(index) {
+    const content = mails[index - 1];
+    document.getElementById('mailContent').textContent = content;
+    document.getElementById('mailBox').style.display = 'block';
+  }
+
+  function showRandomMail() {
+    const randomIndex = Math.floor(Math.random() * mails.length) + 1;
+    showMail(randomIndex);
+  }
+
+  function copyMail() {
+    const text = document.getElementById('mailContent').textContent;
     navigator.clipboard.writeText(text).then(() => {
-      alert("E-posta metni kopyalandı!");
+      alert("Mail metni kopyalandı!");
     });
   }
 </script>
