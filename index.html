@@ -13,7 +13,14 @@
     }
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+    .intro-text {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 20px auto;
+      font-size: 16px;
+      color: #333;
     }
     .info-box {
       background-color: #fff3cd;
@@ -68,10 +75,12 @@
       display: none;
       position: relative;
     }
+    .mail-section {
+      margin-top: 20px;
+    }
     .copy-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      display: inline-block;
+      margin-top: 10px;
       padding: 8px 14px;
       background: #28a745;
       color: white;
@@ -82,7 +91,9 @@
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
-      margin-top: 0;
+      margin: 0;
+      font-size: 15px;
+      text-align: left;
     }
     @media screen and (max-width: 600px) {
       .number-btn {
@@ -93,6 +104,9 @@
 </head>
 <body>
 <h1>Temsilci Pat Harrigan’a E-posta Gönderin</h1>
+<div class="intro-text">
+  Aşağıda H.R.594 yasa tasarısında Türkiye'nin yer almasına karşı hazırlanmış 8 hazır e-posta örneği bulacaksınız. İsterseniz konu ve içeriği ayrı ayrı kopyalayabilir, isterseniz rastgele bir örnekle başlayabilirsiniz.
+</div>
 
 <div class="info-box">
   <strong>📬 Temsilci Pat Harrigan’a e-posta göndermek için adımlar:</strong>
@@ -116,104 +130,136 @@
 </div>
 
 <div id="mailBox" class="mail-box">
-  <pre id="mailContent"></pre>
-  <button class="copy-btn" onclick="copyMail()">Kopyala</button>
+  <div class="mail-section">
+    <h3>Konu (Subject)</h3>
+    <pre id="mailSubject"></pre>
+    <button class="copy-btn" onclick="copyText('mailSubject')">Konu Kopyala</button>
+  </div>
+  <div class="mail-section">
+    <h3>Mail Gövdesi</h3>
+    <pre id="mailContent"></pre>
+    <button class="copy-btn" onclick="copyText('mailContent')">Maili Kopyala</button>
+  </div>
 </div>
 
 <script>
-const mails = [
-`Subject: Request for Reconsideration: Türkiye’s Inclusion in H.R.594
-Dear Congressman Harrigan,
+const subjects = [
+  "Request for Reconsideration: Türkiye’s Inclusion in H.R.594",
+  "With Respect, a Concern Regarding Türkiye in H.R.594",
+  "Clarification Requested Regarding Türkiye’s Reference in H.R.594",
+  "Appreciation and a Thoughtful Request on H.R.594",
+  "A Scholarly Concern Regarding Türkiye’s Inclusion in H.R.594",
+  "Reconsideration Request Based on Legal and Historical Context: Türkiye in H.R.594",
+  "Deep Concern Regarding Türkiye’s Inclusion in H.R.594",
+  "Request for Clarification on Türkiye’s Designation in H.R.594"
+];
+
+const bodies = [
+  `Dear Congressman Harrigan,
+
 I truly appreciate your commitment to promoting religious freedom around the world. However, I would like to kindly share my concern regarding the inclusion of Türkiye in H.R.594.
+
 Türkiye, a secular republic, provides constitutional protections for freedom of religion, and Christian communities continue to worship and operate freely. Including Türkiye in this context may not fully reflect the on-the-ground reality.
+
 I respectfully ask that your office consider revisiting this designation, or at least include a note recognizing Türkiye’s distinct legal and social framework.
-Thank you for your time and thoughtful attention.
-Name
-City, State`,
 
-`Subject: With Respect, a Concern Regarding Türkiye in H.R.594
-Dear Representative Harrigan,
+Thank you for your time and thoughtful attention.`,
+
+  `Dear Representative Harrigan,
+
 As a member of the Turkish-American community, I am grateful for your efforts to defend religious liberties. That said, the mention of Türkiye in H.R.594 has caused concern among our community.
+
 Türkiye is home to centuries-old Christian communities and maintains legal protections that support their freedom of worship and religious life.
+
 We kindly hope your office might reconsider Türkiye’s placement or consider adding clarifying language that better reflects the country’s current legal and social context.
-Warm regards,
-Name
-City, State`,
 
-`Subject: Clarification Requested Regarding Türkiye’s Reference in H.R.594
-Dear Congressman Harrigan,
+Warm regards,`,
+
+  `Dear Congressman Harrigan,
+
 Thank you for championing global human rights through H.R.594. While the goal of protecting religious minorities is admirable, I respectfully believe that Türkiye’s inclusion in the bill may not reflect its legal and constitutional reality.
+
 Türkiye has a longstanding tradition of religious coexistence and provides full legal status to churches and minority communities.
+
 We kindly request that your team consider either revising Türkiye’s inclusion or providing clarification to reflect its unique legal status and secular structure.
-Sincerely,
-Name
-City, State`,
 
-`Subject: Appreciation and a Thoughtful Request on H.R.594
-Dear Representative Harrigan,
+Sincerely,`,
+
+  `Dear Representative Harrigan,
+
 I sincerely value the intent behind H.R.594 and your commitment to advocating for vulnerable communities worldwide. However, I wanted to gently raise a concern about the inclusion of Türkiye in the bill.
+
 Türkiye maintains constitutional protections for religious freedom, and its Christian communities are active and legally recognized. Including Türkiye may unintentionally overshadow this important context.
+
 With great respect, I hope you might consider amending the bill or adding language that acknowledges Türkiye’s unique legal framework.
-Thank you for your service and your time.
-Name
-City, State`,
 
-`Subject: A Scholarly Concern Regarding Türkiye’s Inclusion in H.R.594
-Dear Representative Harrigan,
+Thank you for your service and your time.`,
+
+  `Dear Representative Harrigan,
+
 As someone who deeply values the principles of religious freedom and interfaith coexistence, I respectfully wish to express concern over the inclusion of the Republic of Türkiye in H.R.594.
+
 From a historical and legal perspective, Türkiye represents a unique case among Muslim-majority nations. Since the early days of the Republic, religious minorities have been legally recognized and protected. For instance, the Ecumenical Patriarchate of Constantinople has operated continuously in Istanbul for centuries.
+
 Furthermore, Türkiye’s 1923 Treaty of Lausanne includes specific protections for non-Muslim communities—protections that have been upheld by Turkish and international law.
+
 For these reasons, I believe Türkiye’s inclusion may not accurately reflect its legal and societal realities. A reconsideration or clarifying note could contribute to the bill’s credibility.
-Sincerely,
-Name
-City, State`,
 
-`Subject: Reconsideration Request Based on Legal and Historical Context: Türkiye in H.R.594
-Dear Congressman Harrigan,
+Sincerely,`,
+
+  `Dear Congressman Harrigan,
+
 Thank you for your ongoing commitment to advancing international religious freedoms. As an academic observer of human rights and constitutional law, I would like to respectfully comment on the inclusion of Türkiye in H.R.594.
+
 Unlike many countries referenced in the bill, Türkiye is a secular democracy with a Constitution that guarantees freedom of religion.
+
 The 1923 Treaty of Lausanne and domestic laws offer consistent protection to minorities—regularly affirmed by ECHR and national courts.
+
 I believe including Türkiye may undermine the legal objectivity the bill aspires to. A clarifying note could preserve its integrity.
-With appreciation,
-Name
-City, State`,
 
-`Subject: Deep Concern Regarding Türkiye’s Inclusion in H.R.594
-Dear Representative Harrigan,
+With appreciation,`,
+
+  `Dear Representative Harrigan,
+
 As a Turkish-American who has long cherished the values of both nations, I was saddened to see the Republic of Türkiye included in H.R.594.
-Türkiye is a secular republic, a NATO ally, and a nation where churches and minorities worship openly under constitutional protections.
-Seeing Türkiye listed among persecuting countries has caused confusion and concern within the Turkish-American community.
-As someone who values U.S.–Türkiye ties, I urge reconsideration or clarification of Türkiye’s unique legal and diplomatic position.
-With respect,
-Name
-City, State`,
 
-`Subject: Request for Clarification on Türkiye’s Designation in H.R.594
-Dear Congressman Harrigan,
+Türkiye is a secular republic, a NATO ally, and a nation where churches and minorities worship openly under constitutional protections.
+
+Seeing Türkiye listed among persecuting countries has caused confusion and concern within the Turkish-American community.
+
+As someone who values U.S.–Türkiye ties, I urge reconsideration or clarification of Türkiye’s unique legal and diplomatic position.
+
+With respect,`,
+
+  `Dear Congressman Harrigan,
+
 Thank you for protecting global rights. I’m a Turkish-American and support religious freedom, but I was surprised to see Türkiye included in H.R.594.
+
 Türkiye, as a NATO ally, has long upheld secularism and religious minority protections.
+
 This inclusion has caused concern among Turkish-Americans and risks harming people-to-people ties.
+
 Please consider a revision or clarifying language to reflect Türkiye’s distinct status.
-Warm regards,
-Name
-City, State`
+
+Warm regards,`
 ];
 
 function showMail(index) {
-  document.getElementById('mailContent').textContent = mails[index - 1];
+  document.getElementById('mailSubject').textContent = subjects[index - 1];
+  document.getElementById('mailContent').textContent = bodies[index - 1];
   document.getElementById('mailBox').style.display = 'block';
   window.scrollTo({ top: document.getElementById('mailBox').offsetTop - 20, behavior: 'smooth' });
 }
 
 function showRandomMail() {
-  const randomIndex = Math.floor(Math.random() * mails.length) + 1;
-  showMail(randomIndex);
+  const randomIndex = Math.floor(Math.random() * subjects.length);
+  showMail(randomIndex + 1);
 }
 
-function copyMail() {
-  const text = document.getElementById('mailContent').textContent;
+function copyText(id) {
+  const text = document.getElementById(id).textContent;
   navigator.clipboard.writeText(text).then(() => {
-    alert("Mail metni kopyalandı!");
+    alert("Kopyalandı!");
   });
 }
 </script>
