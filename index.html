@@ -2,25 +2,50 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Örnek Mail Kutusu</title>
+  <title>Temsilciye Mail Gönder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 30px;
+      padding: 20px;
       background-color: #f2f2f2;
+      margin: 0;
     }
     h1 {
       text-align: center;
       margin-bottom: 20px;
     }
-    .button-grid {
+    .info-box {
+      background-color: #fff3cd;
+      border-left: 6px solid #ffc107;
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      border-radius: 6px;
+    }
+    .info-box p {
+      margin: 10px 0;
+    }
+    .center-btn {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .random-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ffc107;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .number-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
       justify-content: center;
-      margin-bottom: 30px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
-    .button-grid button {
+    .number-btn {
       padding: 10px 15px;
       font-size: 16px;
       background-color: #007BFF;
@@ -28,8 +53,9 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      flex: 0 0 auto;
     }
-    .button-grid button:hover {
+    .number-btn:hover {
       background-color: #0056b3;
     }
     .mail-box {
@@ -37,8 +63,8 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 900px;
+      margin: 20px auto;
       display: none;
       position: relative;
     }
@@ -53,79 +79,143 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    .copy-btn:active {
-      background: #1e7e34;
-    }
     pre {
       white-space: pre-wrap;
       word-wrap: break-word;
       margin-top: 0;
     }
+    @media screen and (max-width: 600px) {
+      .number-btn {
+        flex: 1 0 40%;
+      }
+    }
   </style>
 </head>
 <body>
+<h1>Temsilci Pat Harrigan’a E-posta Gönderin</h1>
 
-<h1>Türkiye Hakkındaki Yasa Tasarılarına Yanıt İçin Mail Örnekleri</h1>
-
-<div class="button-grid">
-  <!-- 1-20 numaralı butonlar -->
-  <script>
-    for (let i = 1; i <= 20; i++) {
-      document.write(`<button onclick="showMail(${i})">${i}</button>`);
-    }
-  </script>
-  <!-- Rastgele Buton -->
-  <button onclick="showRandomMail()">🎲 Rastgele</button>
+<div class="info-box">
+  <strong>📬 Temsilci Pat Harrigan’a e-posta göndermek için adımlar:</strong>
+  <p>🖐 <a href="https://harrigan.house.gov/contact/email-me" target="_blank">https://harrigan.house.gov/contact/email-me</a> adresine gidin.</p>
+  <p>⬇️ Sayfanın en altına inin.</p>
+  <p>✉️ “Your Zip” kutusuna: <strong>28689</strong> yazın.</p>
+  <p>📅 Devamında açılan formu eksiksiz doldurun (ad, soyad, e-posta vs.).</p>
+  <p>🔐 "Issue" kısmından <strong>"International Affairs"</strong> seçin.</p>
+  <p>📃 Alttaki metin kutusuna aşağıdaki mail örneklerinden birini kopyalayıp yapıştırın.</p>
 </div>
 
-<!-- Mail gösterme kutusu -->
+<div class="center-btn">
+  <button class="random-btn" onclick="showRandomMail()">🎲 Rastgele Mail Göster</button>
+</div>
+
+<div class="number-row">
+  <script>for (let i = 1; i <= 4; i++) document.write(`<button class="number-btn" onclick="showMail(${i})">${i}</button>`);</script>
+</div>
+<div class="number-row">
+  <script>for (let i = 5; i <= 8; i++) document.write(`<button class="number-btn" onclick="showMail(${i})">${i}</button>`);</script>
+</div>
+
 <div id="mailBox" class="mail-box">
   <pre id="mailContent"></pre>
   <button class="copy-btn" onclick="copyMail()">Kopyala</button>
 </div>
 
 <script>
-  const mails = [
-    "Sayın Temsilci,\n\nHR 594 yasa tasarısının Türkiye’yi haksız şekilde hedef alması kabul edilemez...\nSaygılarımla,\n[Adınız]",
-    "Merhaba,\n\nTürkiye’deki dini özgürlük uygulamaları hakkında daha adil bir bakış açısı sunmak isterim...\nSaygılarımla,\n[Adınız]",
-    "Sayın Kongre Üyesi,\n\nBu yasa tasarısı, Türkiye’nin iç işlerine müdahale niteliğindedir ve yanlış bilgiler içermektedir...",
-    "Saygıdeğer Yetkili,\n\nAmerika ile Türkiye arasındaki stratejik ilişkileri göz önünde bulundurarak bu tasarının gözden geçirilmesini rica ederim...",
-    "Merhaba,\n\nBir Türk-Amerikalı olarak bu yasa tasarısının adil olmadığını düşünüyorum ve endişelerimi paylaşmak istiyorum...",
-    // Mail 6–20’yi seninle devam ettirebiliriz
-    "Örnek 6",
-    "Örnek 7",
-    "Örnek 8",
-    "Örnek 9",
-    "Örnek 10",
-    "Örnek 11",
-    "Örnek 12",
-    "Örnek 13",
-    "Örnek 14",
-    "Örnek 15",
-    "Örnek 16",
-    "Örnek 17",
-    "Örnek 18",
-    "Örnek 19",
-    "Örnek 20"
-  ];
+const mails = [
+`Subject: Request for Reconsideration: Türkiye’s Inclusion in H.R.594
+Dear Congressman Harrigan,
+I truly appreciate your commitment to promoting religious freedom around the world. However, I would like to kindly share my concern regarding the inclusion of Türkiye in H.R.594.
+Türkiye, a secular republic, provides constitutional protections for freedom of religion, and Christian communities continue to worship and operate freely. Including Türkiye in this context may not fully reflect the on-the-ground reality.
+I respectfully ask that your office consider revisiting this designation, or at least include a note recognizing Türkiye’s distinct legal and social framework.
+Thank you for your time and thoughtful attention.
+Name
+City, State`,
 
-  function showMail(index) {
-    const content = mails[index - 1];
-    document.getElementById('mailContent').textContent = content;
-    document.getElementById('mailBox').style.display = 'block';
-  }
+`Subject: With Respect, a Concern Regarding Türkiye in H.R.594
+Dear Representative Harrigan,
+As a member of the Turkish-American community, I am grateful for your efforts to defend religious liberties. That said, the mention of Türkiye in H.R.594 has caused concern among our community.
+Türkiye is home to centuries-old Christian communities and maintains legal protections that support their freedom of worship and religious life.
+We kindly hope your office might reconsider Türkiye’s placement or consider adding clarifying language that better reflects the country’s current legal and social context.
+Warm regards,
+Name
+City, State`,
 
-  function showRandomMail() {
-    const randomIndex = Math.floor(Math.random() * mails.length) + 1;
-    showMail(randomIndex);
-  }
+`Subject: Clarification Requested Regarding Türkiye’s Reference in H.R.594
+Dear Congressman Harrigan,
+Thank you for championing global human rights through H.R.594. While the goal of protecting religious minorities is admirable, I respectfully believe that Türkiye’s inclusion in the bill may not reflect its legal and constitutional reality.
+Türkiye has a longstanding tradition of religious coexistence and provides full legal status to churches and minority communities.
+We kindly request that your team consider either revising Türkiye’s inclusion or providing clarification to reflect its unique legal status and secular structure.
+Sincerely,
+Name
+City, State`,
 
-  function copyMail() {
-    const text = document.getElementById('mailContent').textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Mail metni kopyalandı!");
-    });
-  }
+`Subject: Appreciation and a Thoughtful Request on H.R.594
+Dear Representative Harrigan,
+I sincerely value the intent behind H.R.594 and your commitment to advocating for vulnerable communities worldwide. However, I wanted to gently raise a concern about the inclusion of Türkiye in the bill.
+Türkiye maintains constitutional protections for religious freedom, and its Christian communities are active and legally recognized. Including Türkiye may unintentionally overshadow this important context.
+With great respect, I hope you might consider amending the bill or adding language that acknowledges Türkiye’s unique legal framework.
+Thank you for your service and your time.
+Name
+City, State`,
+
+`Subject: A Scholarly Concern Regarding Türkiye’s Inclusion in H.R.594
+Dear Representative Harrigan,
+As someone who deeply values the principles of religious freedom and interfaith coexistence, I respectfully wish to express concern over the inclusion of the Republic of Türkiye in H.R.594.
+From a historical and legal perspective, Türkiye represents a unique case among Muslim-majority nations. Since the early days of the Republic, religious minorities have been legally recognized and protected. For instance, the Ecumenical Patriarchate of Constantinople has operated continuously in Istanbul for centuries.
+Furthermore, Türkiye’s 1923 Treaty of Lausanne includes specific protections for non-Muslim communities—protections that have been upheld by Turkish and international law.
+For these reasons, I believe Türkiye’s inclusion may not accurately reflect its legal and societal realities. A reconsideration or clarifying note could contribute to the bill’s credibility.
+Sincerely,
+Name
+City, State`,
+
+`Subject: Reconsideration Request Based on Legal and Historical Context: Türkiye in H.R.594
+Dear Congressman Harrigan,
+Thank you for your ongoing commitment to advancing international religious freedoms. As an academic observer of human rights and constitutional law, I would like to respectfully comment on the inclusion of Türkiye in H.R.594.
+Unlike many countries referenced in the bill, Türkiye is a secular democracy with a Constitution that guarantees freedom of religion.
+The 1923 Treaty of Lausanne and domestic laws offer consistent protection to minorities—regularly affirmed by ECHR and national courts.
+I believe including Türkiye may undermine the legal objectivity the bill aspires to. A clarifying note could preserve its integrity.
+With appreciation,
+Name
+City, State`,
+
+`Subject: Deep Concern Regarding Türkiye’s Inclusion in H.R.594
+Dear Representative Harrigan,
+As a Turkish-American who has long cherished the values of both nations, I was saddened to see the Republic of Türkiye included in H.R.594.
+Türkiye is a secular republic, a NATO ally, and a nation where churches and minorities worship openly under constitutional protections.
+Seeing Türkiye listed among persecuting countries has caused confusion and concern within the Turkish-American community.
+As someone who values U.S.–Türkiye ties, I urge reconsideration or clarification of Türkiye’s unique legal and diplomatic position.
+With respect,
+Name
+City, State`,
+
+`Subject: Request for Clarification on Türkiye’s Designation in H.R.594
+Dear Congressman Harrigan,
+Thank you for protecting global rights. I’m a Turkish-American and support religious freedom, but I was surprised to see Türkiye included in H.R.594.
+Türkiye, as a NATO ally, has long upheld secularism and religious minority protections.
+This inclusion has caused concern among Turkish-Americans and risks harming people-to-people ties.
+Please consider a revision or clarifying language to reflect Türkiye’s distinct status.
+Warm regards,
+Name
+City, State`
+];
+
+function showMail(index) {
+  document.getElementById('mailContent').textContent = mails[index - 1];
+  document.getElementById('mailBox').style.display = 'block';
+  window.scrollTo({ top: document.getElementById('mailBox').offsetTop - 20, behavior: 'smooth' });
+}
+
+function showRandomMail() {
+  const randomIndex = Math.floor(Math.random() * mails.length) + 1;
+  showMail(randomIndex);
+}
+
+function copyMail() {
+  const text = document.getElementById('mailContent').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Mail metni kopyalandı!");
+  });
+}
 </script>
 
 </body>
