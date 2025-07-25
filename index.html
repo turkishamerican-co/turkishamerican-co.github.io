@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Türkiye Karşıtı Yasa Tasarıları Hakkında</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 20px;
+      background-color: #f0f2f5;
+    }
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 6px;
+    }
+    h1 { margin: 0; }
+    .info {
+      background: #fff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .mail-box {
+      background-color: #ffffff;
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 20px;
+      position: relative;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+    .copy-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .copy-btn:active {
+      background-color: #1e7e34;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-top: 0;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Türkiye'ye Karşı Hazırlanan Tasarılara Yanıt</h1>
+</header>
+
+<section class="info">
+  <p>
+    ABD Kongresi'nde bazı temsilciler tarafından sunulan yasa tasarıları, Türkiye hakkında yanıltıcı ve tek taraflı bilgiler içermektedir. Aşağıda, bu yasa tasarılarına karşı duruşunuzu demokratik yollarla ifade etmenize yardımcı olacak 20 farklı e-posta örneği bulunmaktadır. Her mesaj, ilgili temsilcilere saygılı ve etkili bir şekilde yazılmıştır.
+  </p>
+</section>
+
+<!-- Mail 1 -->
+<div class="mail-box">
+  <pre id="mail1">Sayın Temsilci,
+
+HR 594 yasa tasarısının, Türkiye’yi “din özgürlüğünü ihlal eden” ülkeler listesine dahil etmesi, Türkiye'nin mevcut anayasal ve toplumsal yapısıyla örtüşmemektedir.
+
+Bu konuda daha dengeli ve kapsamlı bilgi edinmeniz adına Türkiye'nin dini özgürlükler konusundaki uygulamalarına göz atmanızı ve bu yasa tasarısında Türkiye’nin adil değerlendirilmesini sağlamanızı rica ediyorum.
+
+Saygılarımla,
+[Adınız Soyadınız]
+[Yaşadığınız eyalet]</pre>
+  <button class="copy-btn" onclick="copyToClipboard('mail1')">Kopyala</button>
+</div>
+
+<!-- Diğer mail kutularını buraya çoğaltabilirsin: mail2, mail3, ..., mail20 -->
+
+<!-- Örn: -->
+<!-- <div class="mail-box"> ... </div> -->
+
+<footer>
+  Bu sayfa bilgilendirme amacıyla hazırlanmıştır. Demokrasiye katkı sağlayan her ses değerlidir.
+</footer>
+
+<script>
+  function copyToClipboard(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("E-posta metni kopyalandı!");
+    });
+  }
+</script>
+
+</body>
+</html>
